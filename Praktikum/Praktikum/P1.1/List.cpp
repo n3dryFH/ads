@@ -324,10 +324,8 @@ bool List::swap(int key1, int key2)
 	bool bAreNeighbours = leftNodePtr->next == rightNodePtr;
 
 	/********************* swap right to left node **********************/
-	if (bAreNeighbours)
-	{
-		rightNodePtr->next = leftNodePtr;
-	}
+	if (bAreNeighbours)	
+		rightNodePtr->next = leftNodePtr;	
 	else
 	{
 		rightNodePtr->next = leftNodePtr->next;	 	
@@ -346,10 +344,8 @@ bool List::swap(int key1, int key2)
 	}
 
 	/********************* swap left to right node **********************/
-	if (bAreNeighbours)
-	{
-		leftNodePtr->prev = rightNodePtr;
-	}
+	if (bAreNeighbours)	
+		leftNodePtr->prev = rightNodePtr;	
 	else
 	{
 		leftNodePtr->prev = rightPrev;
@@ -365,8 +361,7 @@ bool List::swap(int key1, int key2)
 	{
 		leftNodePtr->next = rightNext;
 		rightNext->prev = leftNodePtr;
-	}
-	
+	}	
 	   	 
 	return true;
 }

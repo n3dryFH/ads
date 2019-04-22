@@ -270,28 +270,5 @@ TEST_CASE("List Testing", "[List]") {
 			tmp = tmp->prev;
 		key = tmp->key;
 		REQUIRE(key == 0);		
-	}
-	SECTION("Vertauschen Head Knoten mit Tail Knoten") {
-		test_list.insertFront(5);
-		test_list.insertFront(7);
-		test_list.insertFront(9);
-		test_list.insertFront(4);
-
-		REQUIRE(test_list.size() == 4);
-		Node<int>* anker = get_anker(test_list);
-		Node<int>* headNext = anker->next->next;
-		Node<int>* tailPrev = anker->prev->prev;
-		REQUIRE(test_list.swap(4, 5) == true);
-		REQUIRE(get_anker(test_list)->next->key == 5);
-		REQUIRE(get_anker(test_list)->prev->key == 4);
-		REQUIRE(get_anker(test_list)->prev->prev == tailPrev);
-		REQUIRE(get_anker(test_list)->next->next == headNext);	
-	}
-	SECTION("Liste mit einem Element") {
-		test_list.insertFront(5);
-		REQUIRE(test_list.size() == 1);
-		Node<int>* anker = get_anker(test_list);		
-		REQUIRE(test_list.swap(5, 5) == false);		
-		REQUIRE(anker->next == anker->prev);		
-	}
+	}	
 }

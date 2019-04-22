@@ -60,8 +60,8 @@ TEST_CASE("List Testing", "[List]") {
 
 		test_list.insertBack(second);
 
-		REQUIRE(test_list.size() == 8);		
-		
+		REQUIRE(test_list.size() == 8);
+
 		Node* tmp = get_anker(test_list);
 		tmp = tmp->next;
 		int key = tmp->key;
@@ -86,7 +86,7 @@ TEST_CASE("List Testing", "[List]") {
 		tmp = tmp->next;
 		key = tmp->key;
 		REQUIRE(key == 5);
-		
+
 		tmp = tmp->next;
 		key = tmp->key;
 		REQUIRE(key == 5);
@@ -234,7 +234,7 @@ TEST_CASE("List Testing", "[List]") {
 		//Fall 3: Letzter Knoten mit einem aus der Mitte, nicht nebeneinander	//
 		//////////////////////////////////////////////////////////////////////////
 		REQUIRE(test_list.swap(1, 3) == true);
-		for(int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 			tmp = tmp->next;
 		//Prüfe ob 1 an neuem Platz
 		key = tmp->key;
@@ -270,27 +270,5 @@ TEST_CASE("List Testing", "[List]") {
 			tmp = tmp->prev;
 		key = tmp->key;
 		REQUIRE(key == 0);
-	}SECTION("Vertauschen Head Knoten mit Tail Knoten") {
-		test_list.insertFront(5);
-		test_list.insertFront(7);
-		test_list.insertFront(9);
-		test_list.insertFront(4);
-
-		REQUIRE(test_list.size() == 4);
-		Node* anker = get_anker(test_list);
-		Node* headNext = anker->next->next;
-		Node* tailPrev = anker->prev->prev;
-		REQUIRE(test_list.swap(4, 5) == true);
-		REQUIRE(get_anker(test_list)->next->key == 5);
-		REQUIRE(get_anker(test_list)->prev->key == 4);
-		REQUIRE(get_anker(test_list)->prev->prev == tailPrev);
-		REQUIRE(get_anker(test_list)->next->next == headNext);
-	}
-	SECTION("Liste mit einem Element") {
-		test_list.insertFront(5);
-		REQUIRE(test_list.size() == 1);
-		Node* anker = get_anker(test_list);
-		REQUIRE(test_list.swap(5, 5) == false);
-		REQUIRE(anker->next == anker->prev);
 	}
 }

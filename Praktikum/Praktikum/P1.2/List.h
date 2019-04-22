@@ -21,7 +21,8 @@ public:
 	template<typename T>
 	friend std::ostream & operator << (std::ostream & stream, List<T> const & Liste);		// Ausgabeoperator überladen
 	template<typename T>
-	friend std::ostream & operator << (std::ostream & stream, List<T> const * Liste);		// Ausgabeoperator überladen
+	friend std::ostream & operator << (std::ostream & stream, List<T> const * Liste);	
+	// Ausgabeoperator überladen	
 	friend Node<T>* get_anker(List& l);
 	friend int get_AnzahlNodes(List& l);
 
