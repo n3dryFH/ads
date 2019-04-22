@@ -272,3 +272,57 @@ TEST_CASE("List Testing", "[List]") {
 		REQUIRE(key == 0);
 	}
 }
+
+TEST_CASE("Custom List Testing", "[List]") {
+	List test_list;
+	SECTION("Vertauschen Head Knoten mit Tail Knoten") {
+		test_list.insertFront(5);
+		test_list.insertFront(7);
+		test_list.insertFront(9);
+		test_list.insertFront(4);
+
+		REQUIRE(test_list.size() == 4);
+		Node* anker = get_anker(test_list);
+		Node* headNext = anker->next->next;
+		Node* tailPrev = anker->prev->prev;
+		REQUIRE(test_list.swap(4, 5) == true);
+		REQUIRE(get_anker(test_list)->next->key == 5);
+		REQUIRE(get_anker(test_list)->prev->key == 4);
+		REQUIRE(get_anker(test_list)->prev->prev == tailPrev);
+		REQUIRE(get_anker(test_list)->next->next == headNext);
+	}
+	SECTION("Swap mit einem Element") {
+		test_list.insertFront(5);
+		REQUIRE(test_list.size() == 1);
+		Node* anker = get_anker(test_list);
+		REQUIRE(test_list.swap(5, 5) == false);
+		REQUIRE(anker->next == anker->prev);
+	}	
+	SECTION("getFront und getBack" ) {
+		test_list.insertFront(5);
+		test_list.insertBack(4);
+		REQUIRE(test_list.size() == 2);
+		int key;		
+		REQUIRE(test_list.getBack(key) == true);
+		REQUIRE(test_list.size() == 1);
+		REQUIRE(key == 4);
+		REQUIRE(test_list.getBack(key) == true);
+		REQUIRE(test_list.size() == 0);
+		REQUIRE(key == 5);
+	}
+	SECTION("nullptr und selbes objekt sicher") {
+		test_list.insertFront(5);		
+		test_list.insertFront(test_list);
+		test_list.insertFront(&test_list);
+		test_list.insertFront(nullptr);
+		test_list.insertBack(nullptr);
+		test_list.insertBack(test_list);
+		test_list.insertBack(&test_list);
+		REQUIRE(test_list.size() == 1);
+	}
+	SECTION("leere liste element löschen") {
+		
+		REQUIRE(test_list.size() == 0);
+		REQUIRE(test_list.del(4) == false);		
+	}
+}
