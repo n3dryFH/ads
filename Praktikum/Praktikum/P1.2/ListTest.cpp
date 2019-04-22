@@ -11,11 +11,13 @@
 using namespace std;
 
 // Friend-Methode fuer Testroutine
-Node<int>* get_anker(List<int>& l) {
+template<typename T>
+Node<T>* get_anker(List<T>& l) {
 	return l.head_tail;
 }
 
-int get_AnzahlNodes(List<int>& l) {
+template<typename T>
+T get_AnzahlNodes(List<T>& l) {
 	return l.list_size;
 }
 

@@ -23,8 +23,10 @@ public:
 	template<typename T>
 	friend std::ostream & operator << (std::ostream & stream, List<T> const * Liste);	
 	// Ausgabeoperator überladen	
-	friend Node<T>* get_anker(List& l);
-	friend int get_AnzahlNodes(List& l);
+	template<typename T>
+	friend Node<T>* get_anker(List<T>& l);
+	template<typename T>
+	friend int get_AnzahlNodes(List<T>& l);
 
 	List()
 	{
