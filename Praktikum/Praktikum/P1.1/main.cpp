@@ -17,6 +17,16 @@ int main(void)
 
 	cout << MyList;	
 
+	{
+		List oneElement;
+		oneElement.insertFront(20);
+		List listWithInsertedOneElement;
+		listWithInsertedOneElement.insertFront(nullptr);
+		listWithInsertedOneElement.insertFront(listWithInsertedOneElement);
+		listWithInsertedOneElement.insertFront(oneElement);
+		List destructorCheck(MyList);
+	}
+
 	cout << "100: " << (MyList.search(100) ? "gefunden" : "nicht gefunden") << endl;
 	cout << "99: " << (MyList.search(99) ? "gefunden" : "nicht gefunden") << endl << endl;
 

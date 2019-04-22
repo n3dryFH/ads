@@ -98,7 +98,7 @@ void List::insertFront(List & _List)
 	Es wird ein Objekt übergeben in dem Knoten vorhanden sein können.
 	Diese Knoten (koplette Kette) werden an den Anfang der Liste (this) übertragen ohne sie zu kopieren!
 */
-	if (_List.head_tail->next != _List.head_tail->prev) // check for empty list
+	if (_List.list_size > 0 && (&_List) != this) // check for empty list and not the same list
 	{
 		head_tail->next->prev = _List.head_tail->prev; // set prev of current head to last node of the added list
 		_List.head_tail->prev->next = head_tail->next; // from the added list, set the next from tail to the current head
@@ -122,7 +122,7 @@ void List::insertFront(List * _List)
 	Es wird ein Objekt übergeben in dem Knoten vorhanden sein können.
 	Diese Knoten (koplette Kette) werden an den Anfang der Liste (this) übertragen ohne sie zu kopieren!
 */
-	if (_List->head_tail->next != _List->head_tail->prev) // check for empty list
+	if (_List && _List->list_size > 0 && _List != this) // check for empty list and not the same list
 	{
 		head_tail->next->prev = _List->head_tail->prev; // set prev of current head to last node of new list
 		_List->head_tail->prev->next = head_tail->next; // from the new list, set the next from tail to the current head
@@ -158,7 +158,7 @@ void List::insertBack(List & _List)
 	Es wird ein Objekt übergeben in dem Knoten vorhanden sein können.
 	Diese Knoten (koplette Kette) werden an das Ende der Liste (this) angehangen ohne sie zu kopieren!
 */
-	if (_List.head_tail->next != _List.head_tail->prev) // check for empty list
+	if (_List.list_size > 0 && (&_List) != this) // check for empty list and not the same list
 	{
 		head_tail->prev->next = _List.head_tail->next; // set next of the current tail to the head of the new list
 		_List.head_tail->next->prev= head_tail->prev; // from the new list, set the next from tail to the current head
@@ -182,7 +182,7 @@ void List::insertBack(List * _List)
 	Es wird ein Objekt übergeben in dem Knoten vorhanden sein können.
 	Diese Knoten (koplette Kette) werden an das Ende der Liste (this) angehangen ohne sie zu kopieren!
 */
-	if (_List->head_tail->next != _List->head_tail->prev) // check for empty list
+	if (_List && _List->list_size > 0 && _List != this) // check for empty list and not the same list
 	{
 		head_tail->prev->next = _List->head_tail->next; // set next of the current tail to the head of the new list
 		_List->head_tail->next->prev = head_tail->prev; // from the new list, set the next from tail to the current head
@@ -203,7 +203,7 @@ bool List::getFront(int & key)
 	Der Wert des vorderen Schlüsselknotens wird rückgegeben und der Knoten gelöscht.
 	Die Methode del(key) darf nicht zum löschen benutzt werden.
 */
-	if (head_tail->prev == head_tail->next) // check for empty list
+	if (list_size == 0) // check for empty list
 		return false;
 	
 	const Node* currentHead = head_tail->next;
@@ -224,7 +224,7 @@ bool List::getBack(int & key)
 	Der Wert des letzten Schlüsselknotens wird rückgegeben und der Knoten gelöscht.
 	Die Methode del(key) darf nicht zum löschen benutzt werden.
 */
-	if (head_tail->prev == head_tail->next) // check for empty list
+	if (list_size == 0) // check for empty lists
 		return false;
 
 	const Node* currentTail = head_tail->prev;
@@ -243,7 +243,7 @@ bool List::del(int key)
 /*
 	Löschen des Knotens mit dem Schlüssel key
 */
-	if (head_tail->prev == head_tail->next) // check for empty list
+	if (list_size == 0) // check for empty list
 		return false;
 
 	for (Node* ptr = head_tail->next; ptr != head_tail; ptr = ptr->next)

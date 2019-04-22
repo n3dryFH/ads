@@ -16,6 +16,16 @@ int main(void)
 		MyList.insertBack(i + 100);
 	}
 
+	{
+		List<int> oneElement;
+		oneElement.insertFront(20);
+		List<int> listWithInsertedOneElement;
+		listWithInsertedOneElement.insertFront(nullptr);
+		listWithInsertedOneElement.insertFront(listWithInsertedOneElement);
+		listWithInsertedOneElement.insertFront(oneElement);
+		List<int> destructorCheck(MyList);
+	}
+
 	cout << MyList;	
 
 	cout << "100: " << (MyList.search(100) ? "gefunden" : "nicht gefunden") << endl;
