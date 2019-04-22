@@ -25,6 +25,13 @@ int main(void)
 		listWithInsertedOneElement.insertFront(listWithInsertedOneElement);
 		listWithInsertedOneElement.insertFront(oneElement);
 		List destructorCheck(MyList);
+
+		List swapTest;
+		swapTest.insertFront(1);
+		swapTest.insertBack(2);
+		swapTest.insertBack(3);
+		swapTest.insertBack(4);
+		swapTest.swap(4, 2);
 	}
 
 	cout << "100: " << (MyList.search(100) ? "gefunden" : "nicht gefunden") << endl;

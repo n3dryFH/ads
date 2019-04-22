@@ -24,6 +24,13 @@ int main(void)
 		listWithInsertedOneElement.insertFront(listWithInsertedOneElement);
 		listWithInsertedOneElement.insertFront(oneElement);
 		List<int> destructorCheck(MyList);
+
+		List<int> swapTest;
+		swapTest.insertFront(1);
+		swapTest.insertBack(2);
+		swapTest.insertBack(3);
+		swapTest.insertBack(4);
+		swapTest.swap(4, 2);
 	}
 
 	cout << MyList;	

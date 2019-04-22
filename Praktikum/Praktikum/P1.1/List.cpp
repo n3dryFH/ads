@@ -323,46 +323,59 @@ bool List::swap(int key1, int key2)
 	Node* rightPrev = rightNodePtr->prev;
 	bool bAreNeighbours = leftNodePtr->next == rightNodePtr;
 
-	/********************* swap right to left node **********************/
-	if (bAreNeighbours)	
-		rightNodePtr->next = leftNodePtr;	
+	/***
+			[1] <=> [2] <=> [3] <=> [4]
+			 ^						 ^
+			Head					Tail
+		**/
+
+		/********************* swap right to left node **********************/
+	if (bAreNeighbours)
+	{
+		rightNodePtr->next = leftNodePtr; // right next is left node
+	}
 	else
 	{
-		rightNodePtr->next = leftNodePtr->next;	 	
-		rightNodePtr->next->prev = rightNodePtr; 
+		// rightNodePtr = 4, leftNodePtr = 2
+		rightNodePtr->next = leftNodePtr->next; // [4] -> [3]
+		rightNodePtr->next->prev = rightNodePtr; // [4] <- [3]
 	}
 
 	if (leftNodePtr == head_tail->next) // check for head		
 	{
-		rightNodePtr->prev = head_tail;
+		rightNodePtr->prev = head_tail; // update tail
 		head_tail->next = rightNodePtr;
 	}
 	else
 	{
-		rightNodePtr->prev = leftNodePtr->prev;
-		leftNodePtr->prev->next = rightNodePtr;
+		// rightNodePtr = 4, leftNodePtr = 2
+		rightNodePtr->prev = leftNodePtr->prev;  // [1] <- [4]
+		leftNodePtr->prev->next = rightNodePtr; // [1] -> [4]
 	}
 
 	/********************* swap left to right node **********************/
-	if (bAreNeighbours)	
-		leftNodePtr->prev = rightNodePtr;	
+	if (bAreNeighbours)
+	{
+		leftNodePtr->prev = rightNodePtr; // left prev is right node
+	}
 	else
 	{
-		leftNodePtr->prev = rightPrev;
-		leftNodePtr->prev->next = leftNodePtr;
+		// rightNodePtr = 4, leftNodePtr = 2 | [3] <=> [2]
+		leftNodePtr->prev = rightPrev; // [3] <- [2] 
+		leftNodePtr->prev->next = leftNodePtr; // [3] -> [2]
 	}
-	
+
 	if (rightNodePtr == head_tail->prev) // check for tail
 	{
-		leftNodePtr->next = head_tail;
+		leftNodePtr->next = head_tail; // update tail
 		head_tail->prev = leftNodePtr;
 	}
 	else
 	{
-		leftNodePtr->next = rightNext;
+		leftNodePtr->next = rightNext; // for the new right node set the right neighbour connection by the old right node
 		rightNext->prev = leftNodePtr;
-	}	
-	   	 
+	}
+
 	return true;
 }
 
