@@ -20,8 +20,11 @@ class Tree{
 
 		static void printTreeNodeRecursive(TreeNode* node);
 		static bool searchAndPrintTreeNodeRecursive(TreeNode* node, const std::string& name);
-		static TreeNode* searchForTreeNodeRecursive(TreeNode* node, int nodePosID);
-		static TreeNode* findMinTreeNode(TreeNode* node);
+		static TreeNode* findParentNodeWithPosID(TreeNode* startNode, int nodePosID);
+		static TreeNode* findParentNodeWithPosIDRecursive(TreeNode* parent, TreeNode* child, int nodePosID);
+		static TreeNode* findParentMinNode(TreeNode * fromNode);
+		static TreeNode* getCloseChildById(TreeNode* startNode, int nodePosID);
+		static void overrideCloseChildByIdWith(TreeNode* parent, int nodePosID, TreeNode* child);
 		//
 		////////////////////////////////////	
 	

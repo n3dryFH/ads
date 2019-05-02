@@ -20,7 +20,7 @@ using namespace std;
 	///////////////////////////////////////
 int main() {
 
-	//int result = Catch::Session().run();
+	int result = Catch::Session().run();
 
 	///////////////////////////////////////
 	// Ihr Code hier:
