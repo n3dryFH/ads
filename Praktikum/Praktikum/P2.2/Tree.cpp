@@ -52,21 +52,28 @@ void Tree::deleteNode(int nodePosID)
 	if (!anker)
 		return;
 
-	TreeNode* parentNode = nullptr;
-	TreeNode* nodeWithPos = nullptr;
-	if (anker->getNodePosID() == nodePosID)	
-		nodeWithPos = anker;	
-	else
+	TreeNode* parentNode = anker;
+	TreeNode* nodeWithPos = anker;	
+	
+	while (nodeWithPos->getNodePosID() != nodePosID)
 	{
-		parentNode = findParentNodeWithPosID(anker, nodePosID);
-		nodeWithPos = getCloseChildById(parentNode, nodePosID);
-	}
+		if (nodePosID < nodeWithPos->getNodePosID())
+		{
+			parentNode = nodeWithPos;
+			nodeWithPos = nodeWithPos->getLeft();
+		}
+		else if (nodePosID > nodeWithPos->getNodePosID())
+		{
+			parentNode = nodeWithPos;
+			nodeWithPos = nodeWithPos->getRight();
+		}			
+	}	
 		
 	if (nodeWithPos)
 	{
 		if (!nodeWithPos->getLeft() && !nodeWithPos->getRight())
 		{
-			if (parentNode)
+			if (anker != nodeWithPos)
 			{
 				overrideCloseChildByIdWith(parentNode, nodePosID, nullptr);
 				nodeWithPos = nullptr;
@@ -95,9 +102,10 @@ void Tree::deleteNode(int nodePosID)
 				minNode->setRight(nodeWithPos->getRight());
 			}					
 			
-			if (parentNode)
+			if (anker != nodeWithPos)
 			{
 				overrideCloseChildByIdWith(parentNode, nodeWithPos->getNodePosID(), minNode);
+				nodeWithPos = nullptr;
 			}
 			else
 			{
@@ -110,7 +118,7 @@ void Tree::deleteNode(int nodePosID)
 		else
 		{
 			TreeNode* child = nodeWithPos->getLeft() ? nodeWithPos->getLeft() : nodeWithPos->getRight();
-			if (parentNode)
+			if (anker != nodeWithPos)
 			{
 				overrideCloseChildByIdWith(parentNode, nodeWithPos->getNodePosID(), child);
 				nodeWithPos = nullptr;
@@ -149,42 +157,6 @@ bool Tree::searchAndPrintTreeNodeRecursive(TreeNode * node, const std::string & 
 	return bEqual || bFoundNameOnLeft || bFoundNameOnRight;
 }
 
-TreeNode* Tree::findParentNodeWithPosID(TreeNode* node, int nodePosID)
-{
-	if (node->getNodePosID() == nodePosID)
-		return node;
-	
-	TreeNode* leftNode = findParentNodeWithPosIDRecursive(node, node->getLeft(), nodePosID);
-	TreeNode* rightNode = nullptr;
-	if (!leftNode)
-		rightNode = findParentNodeWithPosIDRecursive(node, node->getRight(), nodePosID);
-
-	return leftNode ? leftNode : rightNode;	
-}
-
-TreeNode * Tree::findParentNodeWithPosIDRecursive(TreeNode * parent, TreeNode * child, int nodePosID)
-{
-	if (child->getNodePosID() == nodePosID)
-		return parent;
-
-	TreeNode* searchedNode = nullptr;
-	if (child->getLeft())
-	{
-		searchedNode = findParentNodeWithPosIDRecursive(child, child->getLeft(), nodePosID);
-		if (searchedNode)
-			return searchedNode;
-	}
-
-	if (child->getRight())
-	{
-		searchedNode = findParentNodeWithPosIDRecursive(child, child->getRight(), nodePosID);
-		if (searchedNode)
-			return searchedNode;
-	}
-
-	return nullptr;
-}
-
 TreeNode* Tree::findParentMinNode(TreeNode * fromNode)
 {	
 	TreeNode* nodePtr = fromNode->getRight();	
@@ -198,25 +170,16 @@ TreeNode* Tree::findParentMinNode(TreeNode * fromNode)
 	return minParent;
 }
 
-TreeNode * Tree::getCloseChildById(TreeNode * startNode, int nodePosID)
-{
-	if (!startNode)
-		return nullptr;
-
-	return (startNode->getLeft() && startNode->getLeft()->getNodePosID() == nodePosID) ? startNode->getLeft() :
-		(startNode->getRight() && startNode->getRight()->getNodePosID() == nodePosID ? startNode->getRight() : nullptr);
-}
-
 void Tree::overrideCloseChildByIdWith(TreeNode* parent, int nodePosID, TreeNode* child)
 {
 	if (parent)
 	{
-		if (parent->getLeft()->getNodePosID() == nodePosID)
+		if (parent->getLeft() && parent->getLeft()->getNodePosID() == nodePosID)
 		{
 			delete parent->getLeft();
 			parent->setLeft(child);
 		}
-		else if (parent->getRight()->getNodePosID() == nodePosID)
+		else if (parent->getRight() && parent->getRight()->getNodePosID() == nodePosID)
 		{
 			delete parent->getRight();
 			parent->setRight(child);
