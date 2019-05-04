@@ -189,7 +189,16 @@ void Tree::overrideCloseChildByIdWith(TreeNode* parent, int nodePosID, TreeNode*
 
 void Tree::printAll() const
 {
-	std::cout << "ID | Name | Alter | Einkommen | PLZ | Pos" << std::endl;
+	std::cout << "ID |" 
+		<< " Name" << std::setfill(' ') << std::setw(8) << "|"
+		<< " Alter |"
+		<< " Einkommen |"
+		<< "  PLZ  |"
+		<< "Pos" << std::endl;
+	std::cout << std::setfill('-') << std::setw(4) << '+' << std::setw(13) << '+'
+		<< std::setw(8) << '+' << std::setw(12) << '+' << std::setw(8) << '+'
+		<< std::setw(8) << ' ' << std::endl;
+	
 	if (anker)	
 		printTreeNodeRecursive(anker);
 }

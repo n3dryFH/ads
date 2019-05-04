@@ -6,6 +6,7 @@
 #include "TreeNode.h"
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 
 ////////////////////////////////////
@@ -24,10 +25,10 @@ TreeNode::TreeNode(int nodePosID, int nodeID, const std::string & name, int alte
 
 void TreeNode::print() const
 {
-	std::cout << NodeID << " | "
-		<< Name << " | "
-		<< Alter << " | "
-		<< Einkommen << " | "
-		<< PLZ << " | "
-		<< NodePosID << std::endl;
+	std::cout << std::setfill(' ') << std::setw(3) << NodeID << "|"
+		<< std::setw(12) << Name << "|"
+		<< std::setw(7) << Alter << "|"
+		<< std::setw(11) << Einkommen << "|"
+		<< std::setw(7) << PLZ << "|"
+		<< NodePosID << std::setw(0) << std::endl;
 }
