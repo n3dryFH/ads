@@ -110,7 +110,8 @@ int main() {
 				std::cin.ignore();
 				std::getline(std::cin, name);
 				std::cout << "+ Fundstellen: " << std::endl;
-				tree.searchNode(name);
+				if (!tree.searchNode(name))
+					std::cout << "+ Keine Eintraege gefunden!" << std::endl;
 				break;
 			}
 			case 5:

@@ -18,6 +18,23 @@ using namespace std;
 Tree::Tree() : NodeIDCounter(0), anker(nullptr)
 {
 }
+
+/*Tree::~Tree()
+{
+	if (anker)
+		deleteRecursive(anker);
+}*/
+
+/*void Tree::deleteRecursive(TreeNode * node)
+{
+	if (node->getLeft())
+		deleteRecursive(node->getLeft());
+
+	if (node->getRight())
+		deleteRecursive(node->getRight());
+	delete node;
+}*/
+
 void Tree::addNode(const std::string & name, int alter, double einkommen, int plz)
 {
 	int nodePosID = alter + plz + einkommen;

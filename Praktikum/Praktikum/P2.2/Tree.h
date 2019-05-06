@@ -22,6 +22,8 @@ class Tree{
 		static bool searchAndPrintTreeNodeRecursive(TreeNode* node, const std::string& name);
 		static TreeNode* findParentMinNode(TreeNode * fromNode);
 		static void overrideCloseChildByIdWith(TreeNode* parent, int childNodePosID, TreeNode* newChild);
+		//static void deleteRecursive(TreeNode* node);
+
 		//
 		////////////////////////////////////	
 	
@@ -29,6 +31,7 @@ class Tree{
 		///////////////////////////////////////
 		// Ihr Code hier:	
 		Tree();
+		//~Tree();
 		void addNode(const std::string& name, int alter, double einkommen, int plz);
 		void deleteNode(int nodePosID);
 		bool searchNode(const std::string& name);
