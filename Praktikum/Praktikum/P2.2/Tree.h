@@ -34,7 +34,7 @@ class Tree{
 		//~Tree();
 		void addNode(const std::string& name, int alter, double einkommen, int plz);
 		void deleteNode(int nodePosID);
-		bool searchNode(const std::string& name);
+		bool searchNode(const std::string& name) const;
 		void printAll() const;
 		//
 		////////////////////////////////////

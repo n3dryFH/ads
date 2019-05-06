@@ -23,7 +23,7 @@ class Ring{
 		Ring();
 		~Ring();
 		void addNode(const std::string& description, const std::string& data);
-		bool search(const std::string& data);
+		bool search(const std::string& data) const;
 		void print() const;
 		//
 		////////////////////////////////////

@@ -100,7 +100,7 @@ int main() {
 				std::cout << "+ Bitte geben Sie den zu loeschenden Datensatz an" << std::endl;
 				std::cin >> nodePosID;
 				tree.deleteNode(nodePosID);
-				std::cout << "+ Datensatz wurde geloescht." << std::endl; // todo was wenn nicht gefunden?
+				std::cout << "+ Datensatz wurde geloescht." << std::endl; 
 				break;
 			}
 			case 4:

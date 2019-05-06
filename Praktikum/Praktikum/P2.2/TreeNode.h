@@ -33,12 +33,12 @@ class TreeNode{
 		
 		inline TreeNode* getLeft() { return LeftNode; }
 		inline TreeNode* getRight() { return RightNode; }
-		inline std::string getName() { return Name; }
+		inline std::string getName() const { return Name; }
 		inline int getNodePosID() const { return NodePosID; }
-		inline int getAlter() { return Alter; }
-		inline double getEinkommen() { return Einkommen; }
-		inline int getNodeID() { return NodeID; }
-		inline int getPLZ() { return PLZ; }
+		inline int getAlter() const { return Alter; }
+		inline double getEinkommen() const { return Einkommen; }
+		inline int getNodeID() const { return NodeID; }
+		inline int getPLZ() const { return PLZ; }
 
 		inline void setLeft(TreeNode* node) { LeftNode = node; }
 		inline void setRight(TreeNode* node) { RightNode = node; }

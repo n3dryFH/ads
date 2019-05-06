@@ -151,7 +151,7 @@ void Tree::deleteNode(int nodePosID)
 	}	
 }
 
-bool Tree::searchNode(const std::string & name)
+bool Tree::searchNode(const std::string & name) const
 {	
 	return searchAndPrintTreeNodeRecursive(anker, name);	
 }

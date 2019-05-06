@@ -50,12 +50,7 @@ void Ring::addNode(const std::string& description, const std::string& data)
 			++AnzahlNodes;
 		}				
 		else
-		{
-			node->setNext(anker);
-			newNode->setNext(anker->getNext());
-			anker->setNext(newNode);
-			anker = newNode;
-
+		{		
 			if (AnzahlNodes == 6)
 			{
 				RingNode* currentMaxNode = anker->getNext();
@@ -64,11 +59,15 @@ void Ring::addNode(const std::string& description, const std::string& data)
 			}
 			else
 				++AnzahlNodes;
+
+			newNode->setNext(anker->getNext());
+			anker->setNext(newNode);
+			anker = newNode;			
 		}	
 	}
 }
 
-bool Ring::search(const std::string & data)
+bool Ring::search(const std::string & data) const
 {
 	RingNode* node = anker;
 	for (unsigned int i = 0; i < AnzahlNodes; ++i)
