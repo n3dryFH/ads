@@ -28,14 +28,14 @@ int main()
 	delete nRing;*/
 
 	Ring ring;	
-	std::cout << "OneRingToRuleThemAll v0.1" << std::endl
-		<< "==================================" << std::endl
-		<< "1) Backup einfuegen" << std::endl
-		<< "2) Backup suchen" << std::endl
-		<< "3) Alle Backups ausgeben" << std::endl;
-
 	while (true)
 	{
+		std::cout << "OneRingToRuleThemAll v0.1" << std::endl
+			<< "==================================" << std::endl
+			<< "1) Backup einfuegen" << std::endl
+			<< "2) Backup suchen" << std::endl
+			<< "3) Alle Backups ausgeben" << std::endl;
+
 		int selection = 0;
 		do
 		{
@@ -52,7 +52,7 @@ int main()
 				std::cout << "Beschreibung ?> ";
 				std::cin.ignore();
 				std::getline(std::cin, description);
-				std::cout << "Daten ?>";
+				std::cout << "Daten ?> ";
 				std::getline(std::cin, data);				
 				ring.addNode(description, data);
 				std::cout << "+Ihr Datensatz wurde hinzugefuegt." << std::endl;
