@@ -25,17 +25,19 @@ int main() {
 	///////////////////////////////////////
 	// Ihr Code hier:
 
-	std::cout << "==================================" << std::endl
-		<< "Person Analyzer v19.84" << std::endl
-		<< "1) Datensatz einfuegen, manuell" << std::endl
-		<< "2) Datensatz einfuegen, CSV Datei" << std::endl
-		<< "3) Datensatz loeschen" << std::endl
-		<< "4) Suchen" << std::endl
-		<< "5) Datenstruktur anzeigen" << std::endl;
+	
 
 	Tree tree;
 	while (true)
 	{
+		std::cout << "==================================" << std::endl
+			<< "Person Analyzer v19.84" << std::endl
+			<< "1) Datensatz einfuegen, manuell" << std::endl
+			<< "2) Datensatz einfuegen, CSV Datei" << std::endl
+			<< "3) Datensatz loeschen" << std::endl
+			<< "4) Suchen" << std::endl
+			<< "5) Datenstruktur anzeigen" << std::endl;
+
 		int selection = 0;
 		do
 		{
