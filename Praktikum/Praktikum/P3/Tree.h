@@ -23,7 +23,6 @@ class Tree{
 
 		static void printTableHeader();
 		static void printTreeNodePreOrderRecursive(TreeNode* node);
-		static void printTreeNodeLevelOrderRecursive(TreeNode* node);
 		static bool searchAndPrintTreeNodeRecursive(TreeNode* node, const std::string& name);
 		static TreeNode* findParentMinNode(TreeNode * fromNode);
 		static void overrideCloseChildByIdWith(TreeNode* parent, int childNodePosID, TreeNode* newChild);

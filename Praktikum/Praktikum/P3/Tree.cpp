@@ -7,6 +7,7 @@
 #include "TreeNode.h"
 #include <iostream>
 #include <iomanip>
+#include <queue>
 
 using namespace std;
 
@@ -371,8 +372,19 @@ void Tree::printLevelOrder()
 	printTableHeader();
 	if (!anker)
 		return;	
-	anker->print();
-	printTreeNodeLevelOrderRecursive(anker);
+
+	std::queue<TreeNode*> queue;	
+	queue.push(anker);
+	while (!queue.empty())
+	{
+		TreeNode* nodePtr = queue.front();	
+		queue.pop();
+		nodePtr->print();
+		if (nodePtr->getLeft())
+			queue.push(nodePtr->getLeft());
+		if (nodePtr->getRight())
+			queue.push(nodePtr->getRight());
+	}	
 }
 
 void Tree::printTreeNodePreOrderRecursive(TreeNode * node)
@@ -383,21 +395,6 @@ void Tree::printTreeNodePreOrderRecursive(TreeNode * node)
 	if (node->getRight())
 		printTreeNodePreOrderRecursive(node->getRight());
 }
-
-void Tree::printTreeNodeLevelOrderRecursive(TreeNode * node)
-{
-	if (!node)
-		return;
-
-	if (node->getLeft())
-		node->getLeft()->print();
-	if (node->getRight())
-		node->getRight()->print();
-
-	printTreeNodeLevelOrderRecursive(node->getLeft());
-	printTreeNodeLevelOrderRecursive(node->getRight());
-}
-
 
 //
 ////////////////////////////////////
