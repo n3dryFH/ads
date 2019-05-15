@@ -55,6 +55,14 @@ void Tree::addNode(const std::string & name, int alter, double einkommen, int pl
 				nodePtr = nodePtr->getLeft();
 			else
 				nodePtr = nodePtr->getRight();
+
+			if (parentNode->getLeft() && parentNode->getLeft()->getRed() &&
+				parentNode->getRight() && parentNode->getRight()->getRed())
+			{
+				parentNode->setRed(true);
+				parentNode->getRight()->setRed(false);
+				parentNode->getLeft()->setRed(false);
+			}
 		}
 
 		newNode->setParent(parentNode);
@@ -216,33 +224,20 @@ void Tree::printAll() const
 
 bool Tree::balanceTree(TreeNode * forNewNode)
 {
-
 	TreeNode* newNodePtr = forNewNode;
 	TreeNode* parentNode = forNewNode->getParent();
-	while ((parentNode && parentNode->getRed()) || anker->getRed())
+	while (newNodePtr != anker || anker->getRed())
 	{
 		if (newNodePtr == anker)
 		{
 			newNodePtr->setRed(false);
 			parentNode = nullptr;
 		}
-		else if (parentNode->getRed())
+		else 
 		{
 			TreeNode* grandparentNode = parentNode->getParent();
-			assert(!grandparentNode->getRed());
-			TreeNode* uncleNode = (grandparentNode->getLeft() == parentNode)
-				? grandparentNode->getRight()
-				: grandparentNode->getLeft();
-
-			if (uncleNode && uncleNode->getRed())
-			{
-				uncleNode->setRed(false);
-				parentNode->setRed(false);
-				grandparentNode->setRed(true);
-			}
-			else
-			{
-				// uncle is black
+			if (parentNode->getRed() && newNodePtr->getRed())
+			{				
 				if (grandparentNode->getRight() == parentNode)
 				{
 					if (parentNode->getRight() == newNodePtr)
@@ -280,12 +275,10 @@ bool Tree::balanceTree(TreeNode * forNewNode)
 					}
 				}
 			}
-
-			newNodePtr = grandparentNode;
+			newNodePtr = parentNode;
 			parentNode = newNodePtr->getParent();
 		}
-		else
-			throw std::exception("balanceTree failed!");
+		
 	}
 
 	return true;
