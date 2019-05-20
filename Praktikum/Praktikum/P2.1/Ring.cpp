@@ -69,20 +69,22 @@ void Ring::addNode(const std::string& description, const std::string& data)
 
 bool Ring::search(const std::string & data) const
 {
+	bool found = false;
 	RingNode* node = anker;
 	for (unsigned int i = 0; i < AnzahlNodes; ++i)
 	{
 		if (node->getData() == data)
 		{
+			found = true;
 			std::cout << "+ Gefunden in Backup: OldAge " << node->getAge()
 				<< ", Beschreibung: " << node->getDescription()
 				<< ", Daten: " << node->getData() << std::endl;
-			return true;
+			
 		}
 		node = node->getNext();
 	}
 	std::cout << "+ Datensatz konnte nicht gefunden werden." << std::endl;
-	return false;
+	return found;
 }
 
 void Ring::print() const
