@@ -56,6 +56,7 @@ void Tree::addNode(const std::string & name, int alter, double einkommen, int pl
 			else
 				nodePtr = nodePtr->getRight();
 
+			// change color
 			if (parentNode->getLeft() && parentNode->getLeft()->getRed() &&
 				parentNode->getRight() && parentNode->getRight()->getRed())
 			{
@@ -64,12 +65,12 @@ void Tree::addNode(const std::string & name, int alter, double einkommen, int pl
 				parentNode->getLeft()->setRed(false);
 			}
 		}
-
+		// add new node to tree
 		newNode->setParent(parentNode);
 		if (newNode->getNodePosID() < parentNode->getNodePosID())
 			parentNode->setLeft(newNode);
 		else
-			parentNode->setRight(newNode);	
+			parentNode->setRight(newNode);			
 	}
 	balanceTree(newNode);
 	++NodeIDCounter;
@@ -234,10 +235,11 @@ bool Tree::balanceTree(TreeNode * forNewNode)
 			parentNode = nullptr;
 		}
 		else 
-		{
-			TreeNode* grandparentNode = parentNode->getParent();
+		{			
+			// node and parentNode are red
 			if (parentNode->getRed() && newNodePtr->getRed())
 			{				
+				TreeNode* grandparentNode = parentNode->getParent();
 				if (grandparentNode->getRight() == parentNode)
 				{
 					if (parentNode->getRight() == newNodePtr)
@@ -284,13 +286,20 @@ bool Tree::balanceTree(TreeNode * forNewNode)
 	return true;
 }
 
+//       g            p
+//      / \         /   \
+//     rp   u   =  rx    rg
+//    / \         / \    / \
+//   rx   T3     T1 T2  T3   u
+//  / \
+//T1   T2
 bool Tree::rotateTreeRight(TreeNode * parentNode, TreeNode* leftChild)
 {
 	if (parentNode && parentNode->getParent() && parentNode->getLeft() == leftChild)
 	{
 		TreeNode* grandparentNode = parentNode->getParent();
-		grandparentNode->setLeft(parentNode->getRight());
-		if (grandparentNode->getLeft())
+		grandparentNode->setLeft(parentNode->getRight()); // set t3
+		if (grandparentNode->getLeft()) // set parent of t3
 			grandparentNode->getLeft()->setParent(grandparentNode);
 		parentNode->setLeft(leftChild);
 		parentNode->setRight(grandparentNode);
@@ -315,13 +324,20 @@ bool Tree::rotateTreeRight(TreeNode * parentNode, TreeNode* leftChild)
 	return false;
 }
 
+//       g                 p
+//     /  \              /   \
+//    u    rp           rg     rx
+//        /  \     =   /  \   /  \
+//       T3   rx     u   T3 T4  T5  
+//           /  \
+//          T4  T5
 bool Tree::rotateTreeLeft(TreeNode * parentNode, TreeNode* rightChild)
 {
 	if (parentNode && parentNode->getParent() && parentNode->getRight() == rightChild)
 	{
 		TreeNode* grandparentNode = parentNode->getParent();
 		grandparentNode->setRight(parentNode->getLeft());
-		if (grandparentNode->getRight())
+		if (grandparentNode->getRight()) // set T3
 			grandparentNode->getRight()->setParent(grandparentNode);
 		parentNode->setLeft(grandparentNode);
 		parentNode->setRight(rightChild);
