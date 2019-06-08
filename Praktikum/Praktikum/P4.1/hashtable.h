@@ -1,8 +1,6 @@
 #ifndef _HASHTABLE_H_
 #define _HASHTABLE_H_
 
-#include <vector>
-
 using namespace std;
 
 class HashTable {
@@ -18,7 +16,7 @@ private:
 	int size;					// Größe der HashTable
 	int elements;				// Anz. d. Elemente in HashTable
 	int collisionCount;			// Anz. d. Kollisionen beim Einfügen
-	vector<int>* hashTable;		// HashTable
+	vector<int>* hashTable = nullptr;		// HashTable
 	int hashValue(int item);	// Hashindex berechnen
 };
 

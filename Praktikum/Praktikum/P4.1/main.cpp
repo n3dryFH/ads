@@ -18,6 +18,15 @@ void benchmark_shellsort();
 int main(int argc, char** argv) {
 
   Catch::Session().run();
+  HashTable hashtable(1000);
+  srand(time(nullptr)); // init rand
+  for (int i = 0; i < 200; ++i)
+  {
+	  int random = rand() % 500 + 1000;
+	  hashtable.insert(random);
+  }
+  std::cout << "[+] Collision Count: " << hashtable.getCollisionCount() << std::endl;
+
   std::cin.get();
 
   benchmark_heapsort();
@@ -25,7 +34,6 @@ int main(int argc, char** argv) {
   benchmark_quicksort();
   benchmark_shellsort();
 }
-
 
 //executes benchmark for quicksort
 void benchmark_quicksort() {
@@ -136,7 +144,7 @@ void benchmark_mergesort() {
 		dtime = omp_get_wtime();
 
 		//execzute sorting algorithm
-		sorting::HeapSort(V, V.size());
+		sorting::MergeSort(V, 0, V.size());
 
 		//stop time
 		dtime = omp_get_wtime() - dtime;
@@ -176,7 +184,7 @@ void benchmark_shellsort() {
 		dtime = omp_get_wtime();
 
 		//execzute sorting algorithm
-		sorting::HeapSort(V, V.size());
+		sorting::ShellSort(V, V.size());
 
 		//stop time
 		dtime = omp_get_wtime() - dtime;
