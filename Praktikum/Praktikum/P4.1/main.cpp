@@ -27,6 +27,18 @@ int main(int argc, char** argv) {
   }
   std::cout << "[+] Collision Count: " << hashtable.getCollisionCount() << std::endl;
 
+  std::vector<int> quickSortList = { 10,80,30,90,40,50,70 };
+  sorting::QuickSort(quickSortList, 0, quickSortList.size()-1);
+
+  std::vector<int> mergeSortList = { 38,27,43,3,9,82,10 };
+  sorting::MergeSort(mergeSortList, 0, mergeSortList.size() - 1);
+
+  std::vector<int> heapSortList = { 4, 10, 3, 5, 1};
+  sorting::HeapSort(heapSortList, heapSortList.size());
+
+  std::vector<int> shellSortList = { 12, 34, 54, 2, 3 };
+  sorting::ShellSort(shellSortList, shellSortList.size());
+
   std::cin.get();
 
   benchmark_heapsort();

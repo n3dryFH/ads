@@ -104,7 +104,7 @@ namespace sorting {
 	// Heapsort  *
 	//************
 
-	void PercDown(vector<int> &a, int heapSize, int index)
+	void Heapify(vector<int> &a, int heapSize, int index)
 	{
 		int largest = index;
 		int leftChildIndex = 2 * index + 1;
@@ -118,7 +118,7 @@ namespace sorting {
 		if (largest != index)
 		{
 			swap(a[index], a[largest]);
-			PercDown(a, heapSize, largest);
+			Heapify(a, heapSize, largest);
 		}
 	}
 
@@ -129,12 +129,12 @@ namespace sorting {
 		//***************************
 
 		for (int i = n / 2 - 1; i >= 0; --i)
-			PercDown(a, n, i);
+			Heapify(a, n, i);
 
 		for (int i = n - 1; i >= 0; --i)
 		{
 			swap(a[0], a[i]);
-			PercDown(a, i, 0);
+			Heapify(a, i, 0);
 		}
 	}
 
