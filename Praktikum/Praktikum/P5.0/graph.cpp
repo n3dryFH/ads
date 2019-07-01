@@ -167,6 +167,7 @@ double Graph::prim(int startKey)
 {	
 	auto compareFunc = [](const Edge* a, const Edge* b)	{ return a->Weight > b->Weight;	};
 	std::priority_queue<const Edge*, std::vector<const Edge*>, decltype(compareFunc)> unvisitedEgdesQueue(compareFunc);
+
 	auto visitFunc = [&](GraphNode* node) 
 	{
 		node->setVisited(true);

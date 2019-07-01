@@ -4,6 +4,12 @@
 #include "catch.h"
 #include "graph.h"
 
+// Graph1: http://graphonline.ru/en/?graph=OcHUMtGnAwTdPzsq
+// Graph2: http://graphonline.ru/en/?graph=EexUAuqadlKkrkXK
+// Graph3: http://graphonline.ru/en/?graph=kZINmYSLStIUYnfN
+//			-> http://graphonline.ru/en/?graph=dFWrUmdWvXFMpMbi
+//			-> http://graphonline.ru/en/?graph=EhalCDTUHnZVdvuL
+
 int main()
 {
 	Catch::Session().run();
