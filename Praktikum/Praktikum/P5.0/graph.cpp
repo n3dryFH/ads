@@ -150,7 +150,7 @@ bool Graph::breadthSearchIter(int startKey)
 		const int numberOfEdges = node->getNumberOfEdges();
 		for (int i = 0; i < numberOfEdges; ++i)
 		{
-			const int nextTargetNodeID = node->getEdge(i)->EndNodeID;
+ 			const int nextTargetNodeID = node->getEdge(i)->EndNodeID;
 			GraphNode* const nextTargetNode = getNodeByKey(nextTargetNodeID);
 			assert(nextTargetNode);
 			if (!nextTargetNode->getVisited())
@@ -174,7 +174,7 @@ double Graph::prim(int startKey)
 		const int numberOfEdges = node->getNumberOfEdges();
 		for (int i = 0; i < numberOfEdges; ++i)
 		{
-			if (!nodes.at(node->getEdge(i)->EndNodeID)->getVisited())
+			if (!getNodeByKey(node->getEdge(i)->EndNodeID)->getVisited())
 				unvisitedEgdesQueue.push(node->getEdge(i));
 		}
 	};
@@ -191,8 +191,8 @@ double Graph::prim(int startKey)
 		const Edge* edge = unvisitedEgdesQueue.top();
 		unvisitedEgdesQueue.pop();
 
-		GraphNode* const startNode = nodes.at(edge->StartNodeID);
-		GraphNode* const endNode = nodes.at(edge->EndNodeID);
+		GraphNode* const startNode = getNodeByKey(edge->StartNodeID);
+		GraphNode* const endNode = getNodeByKey(edge->EndNodeID);
 
 		if (startNode->getVisited() && endNode->getVisited())
 			continue;
@@ -231,8 +231,8 @@ double Graph::kruskal()
 	std::vector<const Edge*> mstEdges;
 	for (auto& edge : edges)
 	{		
-		const int startNodeIDComponent = nodes.at(edge->StartNodeID)->getComponent();
-		const int endNodeIDComponent = nodes.at(edge->EndNodeID)->getComponent();
+		const int startNodeIDComponent = getNodeByKey(edge->StartNodeID)->getComponent();
+		const int endNodeIDComponent = getNodeByKey(edge->EndNodeID)->getComponent();
 		// Wenn Knoten zu unterschiedlichen Bäumen gehört,
 		// können diese mit der Kante ohne Zykel verbunden werde
 		if (startNodeIDComponent != endNodeIDComponent)
